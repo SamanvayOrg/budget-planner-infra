@@ -1,0 +1,34 @@
+---
+
+- name: Ensure socket stopped
+  service:
+    name: "{{application_name}}_console.socket"
+    enabled: true
+    state: stopped
+
+- name: Ensure server stopped
+  service:
+    name: "{{application_name}}_console.service"
+    enabled: true
+    state: stopped
+
+- name: Extract application to application directory
+  unarchive:
+    src: "{{application_zip_path}}/{{application_zip_file_name}}"
+    dest: "{{ application_dir }}"
+    owner: "{{ application_user }}"
+    group: "{{ application_group }}"
+
+- name: Setup dependencies and migrations script
+  template:
+    src: setup_deps_and_migrations.sh.j2
+    dest: "/home/{{application_user}}/setup_deps_and_migrations.sh"
+    owner: "{{application_user}}"
+    group: "{{application_group}}"
+    mode: '755'
+
+- name: Install dependencies and run migrations
+  command: "sudo -H -u {{application_user}} /home/{{application_user}}/setup_deps_and_migrations.sh {{application_user}} {{application_dir}}"
+  notify:
+    - restart console
+    - restart daphne

@@ -1,0 +1,9 @@
+[webservers]
+staging.budget-planner.samanvayfoundation.org ansible_user=ansible
+
+[dbservers]
+staging.budget-planner.samanvayfoundation.org ansible_user=ansible
+
+[test:children]
+webservers
+dbservers

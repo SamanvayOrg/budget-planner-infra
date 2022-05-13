@@ -1,0 +1,10 @@
+---
+
+- include: add_firewall_rules.yml
+
+- include: setup_nginx.yml
+
+- include: setup_certificates.yml
+
+- include: deploy_app.yml
+

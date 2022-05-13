@@ -1,0 +1,9 @@
+---
+
+env: test
+project_name: budget-planner
+application_name: "{{ project_name }}"
+application_user: "{{ application_name }}"
+application_group: "{{ application_name }}_group"
+app_url: "staging.budget-planner.samanvayfoundation.org"
+environment: "staging"

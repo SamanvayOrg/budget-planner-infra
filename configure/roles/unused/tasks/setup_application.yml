@@ -1,0 +1,78 @@
+---
+
+- name: Create console template
+  template: src=console_nginx_conf.j2
+    dest=/etc/nginx/sites-available/console
+    backup=yes
+  notify: reload nginx
+
+- name: Ensure console site is enabled in nginx
+  file: src=/etc/nginx/sites-available/console
+    dest=/etc/nginx/sites-enabled/console
+    state=link
+  notify: reload nginx
+
+- name: Reload nginx
+  service: name=nginx state=reloaded
+
+- name: Copy python install script
+  template:
+    src: install_python.sh.j2
+    dest: "/home/{{application_user}}/install_python.sh"
+    owner: "{{application_user}}"
+    group: "{{application_group}}"
+    mode: '755'
+
+- name: Install python
+  command: "sudo -H -u {{application_user}} /home/{{application_user}}/install_python.sh {{application_user}} {{python_version}}"
+  args:
+    creates: "/home/{{application_user}}/.pyenv/versions/{python_version}/bin/python"
+
+- name: Set up config for application
+  template:
+    src: console.conf.j2
+    dest: "/etc/{{application_name}}_console.conf"
+    owner: root
+    group: root
+    mode: '644'
+  tags: refresh-config
+
+- name: Copy firebase credentials
+  copy:
+    src: "{{env}}/firebase_admin_credentials.json"
+    dest: "{{application_dir}}/firebase_admin_credentials.json"
+    mode: '644'
+
+- name: Set up systemd config for gunicorn socket
+  template:
+    src: console.socket_template.j2
+    dest: "/usr/lib/systemd/system/{{application_name}}_console.socket"
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Set up systemd config for application
+  template:
+    src: console.service.template.j2
+    dest: /usr/lib/systemd/system/{{application_name}}_console.service
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Set up gunicorn run script
+  template:
+    src: start.sh.j2
+    dest: "{{application_dir}}/start.sh"
+    owner: "{{application_user}}"
+    group: "{{application_group}}"
+    mode: '755'
+
+- name: Enable socket
+  service:
+    name: "{{application_name}}_console.socket"
+    enabled: true
+
+- name: Enable server
+  service:
+    name: "{{application_name}}_console.service"
+    enabled: true

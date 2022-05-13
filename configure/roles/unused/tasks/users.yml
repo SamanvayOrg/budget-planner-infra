@@ -1,0 +1,13 @@
+---
+
+- name: Ensure server group present
+  group: name={{ application_group }} state=present
+
+- name: Ensure server user present
+  user: name={{ application_user }} group={{ application_group }}  state=present
+
+# pipenv does not work very well with nologin shells. We will fix this once we get rid of pipenv. Specific problems include
+# pipenv shell is impossible to get in
+# We cannot set python in the path unless we end up
+#- name: Remove shell access and set nologin for server user
+#  command: usermod -s /sbin/nologin {{ application_user }}
