@@ -12,5 +12,6 @@
     - security
     - nginx
     - certbot
-    - app
-#    - console
+    - postgres
+    - web
+    - appserver

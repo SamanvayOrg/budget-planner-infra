@@ -33,6 +33,8 @@
       - curl
       - net-tools
       - openjdk-11-jdk
+      - zip
+      - acl
   tags:
     - packages
     - packages.security

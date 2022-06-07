@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+## Deploys app.
+# Usage: WEBAPP_ZIP_PATH=path_of_zip WEBAPP_ZIP_FILE_NAME=path_of_zip_file ./scripts/deploy-app.sh <environment>
+# <environment> can be one of staging or production. It will be the inventory file that we use to deploy
+
 set -e -x
 ENVIRONMENT=$1
 

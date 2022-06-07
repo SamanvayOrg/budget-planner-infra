@@ -7,13 +7,9 @@ application_zip_file_name: "{{ lookup('env','APPLICATION_ZIP_FILE_NAME') }}"
 # Application path
 application_dir: "/opt/{{ application_name }}"
 application_log_dir: "/var/log/{{ application_name }}"
-celery_dir: "/opt/celery"
-
-python_version: "3.7.9"
-#python_exe: "/home/{{application_user}}/.pyenv/versions/{{ python_version }}/bin/python"
-pip_exe: "/home/{{application_user}}/.pyenv/versions/{{ python_version }}/bin/pip"
+application_conf_file: "/etc/{{application_name}}_appserver.conf"
+static_file_path: "/var/www/{{ application_name }}"
 
 application_user_home: "/home/{{application_user}}"
 
-public_url: "{{console_url}}"
-public_url_legacy: "{{console_url_legacy}}"
+public_url: "{{app_url}}"
