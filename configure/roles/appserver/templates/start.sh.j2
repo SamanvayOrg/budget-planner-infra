@@ -2,4 +2,4 @@
 
 . {{application_conf_file}}
 
-/usr/bin/java -jar {{application_dir}}/budget-planner-server.jar
+/usr/bin/java -Dspring.profiles.active=production -jar {{application_dir}}/budget-planner-server.jar

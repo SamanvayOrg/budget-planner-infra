@@ -6,11 +6,10 @@
 
 - include: setup_nginx.yml
 
-- include: setup_certificates.yml
-
 - include: set_file_permissions.yml
 
 - include: setup_application.yml
 
-- include: deploy_application.yml
+- include: setup_certificates.yml
 
+- include: deploy_application.yml

@@ -2,12 +2,13 @@
 
 - name: Clean deploy directory
   command: "sudo rm -rf /vaw/www/{{application_name}}"
+  tags: deploy-web
 
 - name: Delete deploy directory
   file:
     path: "/var/www/{{application_name}}"
     state: absent
-  tags: deploy-app-only
+  tags: deploy-web
 
 - name: Ensure deploy directory exists
   file:
@@ -16,11 +17,11 @@
     group: "www-data"
     state: directory
     mode: '755'
-  tags: deploy-app
+  tags: deploy-web
 
 - name: Extract web application
   unarchive:
     src: "{{webapp_zip_path}}/{{webapp_zip_file_name}}"
     dest: "/var/www/{{application_name}}"
     owner: "www-data"
-  tags: deploy-app-only
+  tags: deploy-web

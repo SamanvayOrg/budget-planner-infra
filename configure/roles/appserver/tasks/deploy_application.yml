@@ -5,6 +5,7 @@
     name: "{{application_name}}_appserver.service"
     enabled: true
     state: stopped
+  tags: deploy-appserver
 
 - name: Copy appserver jar file
   copy:
@@ -13,9 +14,11 @@
     owner: "{{ application_user }}"
     group: "{{ application_group }}"
     mode: 0755
+  tags: deploy-appserver
 
-- name: Ensure server stopped
+- name: Ensure server started
   service:
     name: "{{application_name}}_appserver.service"
     enabled: true
     state: started
+  tags: deploy-appserver
