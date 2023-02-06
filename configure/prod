@@ -1,0 +1,6 @@
+[webservers]
+citybudgets.in ansible_user=cwascmvmadmin
+
+
+[prod:children]
+webservers

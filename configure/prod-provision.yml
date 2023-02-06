@@ -12,6 +12,3 @@
     - security
     - nginx
     - certbot
-    - postgres
-    - web
-    - appserver

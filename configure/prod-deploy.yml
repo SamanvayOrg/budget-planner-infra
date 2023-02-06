@@ -1,12 +1,13 @@
-- name: Base configuration
-  hosts: all
+---
+
+- name: Configure web servers
+  hosts: webservers
   become: yes
   become_user: root
   remote_user: "{{ application_user }}"
   vars:
     update_apt_cache: yes
   roles:
-    - base
-
-
-- include: prod-provision.yml
+#    - nginx
+    - web
+    - appserver

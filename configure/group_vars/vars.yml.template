@@ -5,7 +5,7 @@ project_name: budget-planner
 application_name: "{{ project_name }}"
 application_user: "{{ application_name }}"
 application_group: "{{ application_name }}_group"
-app_url: "staging.budget-planner.samanvayfoundation.org"
+app_url: "citybudgets.in"
 environment: "staging"
 auth0_clientid: "<replace>"
 auth0_clientsecret: "<replace>"
