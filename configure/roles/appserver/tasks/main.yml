@@ -13,3 +13,4 @@
 - include_tasks: setup_certificates.yml
 
 - include_tasks: deploy_application.yml
+  tags: deploy-appserver

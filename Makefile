@@ -30,6 +30,6 @@ encrypt:
 	ansible-vault encrypt configure/group_vars/test/vars.yml --vault-password-file ${VAULT_PASSWORD_FILE}
 
 prod-deploy: check-env
-	cd configure && ansible-playbook -i prod prod-deploy.yml --tags  deploy-appserver,deploy-web --vault-password-file ${VAULT_PASSWORD_FILE} -vvv
+	cd configure && ansible-playbook -i prod prod-deploy.yml --tags deploy-appserver,deploy-web --vault-password-file ${VAULT_PASSWORD_FILE} -vvv
 
 #Reference command: APPLICATION_ZIP_PATH=/Users/himeshr/IdeaProjects/SamanvayOrg/budget-planner-server/build/libs APPLICATION_ZIP_FILE_NAME=budget-planner-server-0.0.1-SNAPSHOT.jar WEBAPP_ZIP_PATH=/Users/himeshr/IdeaProjects/SamanvayOrg/budget-planner-web WEBAPP_ZIP_FILE_NAME=budget-planner-web.zip make prod-deploy VAULT_PASSWORD_FILE=~/.ssh/budget-valut-pwd-file
