@@ -28,3 +28,6 @@ decrypt:
 encrypt:
 	ansible-vault encrypt configure/group_vars/prod/vars.yml --vault-password-file ${VAULT_PASSWORD_FILE}
 	ansible-vault encrypt configure/group_vars/test/vars.yml --vault-password-file ${VAULT_PASSWORD_FILE}
+
+prod-deploy: check-env
+	cd configure && ansible-playbook -i prod prod-deploy.yml --vault-password-file ${VAULT_PASSWORD_FILE} -vvv
