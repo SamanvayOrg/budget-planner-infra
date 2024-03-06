@@ -1,6 +1,10 @@
 [webservers]
-citybudgets.in ansible_user=cwascmvmadmin
+citybudgets.in
 
 
 [prod:children]
 webservers
+
+[all:vars]
+ansible_user=cwascmvmadmin
+ansible_ssh_pass=<specify password here>

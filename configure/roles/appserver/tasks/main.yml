@@ -1,15 +1,15 @@
 ---
 
-- include: users.yml
+- include_tasks: users.yml
 
-- include: setup_firewall_rules.yml
+- include_tasks: setup_firewall_rules.yml
 
-- include: setup_nginx.yml
+- include_tasks: setup_nginx.yml
 
-- include: set_file_permissions.yml
+- include_tasks: set_file_permissions.yml
 
-- include: setup_application.yml
+- include_tasks: setup_application.yml
 
-- include: setup_certificates.yml
+- include_tasks: setup_certificates.yml
 
-- include: deploy_application.yml
+- include_tasks: deploy_application.yml
