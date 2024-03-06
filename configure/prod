@@ -8,3 +8,4 @@ webservers
 [all:vars]
 ansible_user=cwascmvmadmin
 ansible_ssh_pass=<specify password here>
+#Needs sshpass to be installed on system

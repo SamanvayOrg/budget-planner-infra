@@ -9,5 +9,5 @@
     update_apt_cache: yes
   roles:
 #    - nginx
-    - web
-    - appserver
+#    - web
+#    - appserver
